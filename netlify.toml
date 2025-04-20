@@ -1,10 +1,10 @@
 [build]
   publish = "public/build"
-  command = "npm run build"
+  command = "chmod +x netlify-build.sh && ./netlify-build.sh"
 
 [build.environment]
   NODE_VERSION = "18"
-  PHP_VERSION = "8.1"
+  PHP_VERSION = "8.2"
 
 [[redirects]]
   from = "/*"
