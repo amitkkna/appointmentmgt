@@ -11,4 +11,12 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    optimizeDeps: {
+        include: ['rxjs', 'rxjs/operators']
+    },
+    build: {
+        commonjsOptions: {
+            include: [/node_modules/]
+        }
+    }
 });

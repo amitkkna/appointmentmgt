@@ -12,10 +12,10 @@ console.log('=== Environment Information ===');
 try {
   console.log('Node.js version:');
   execSync('node --version', { stdio: 'inherit' });
-  
+
   console.log('npm version:');
   execSync('npm --version', { stdio: 'inherit' });
-  
+
   console.log('Python version:');
   try {
     execSync('python --version', { stdio: 'inherit' });
@@ -28,6 +28,15 @@ try {
   }
 } catch (error) {
   console.error('Error printing environment information:', error);
+}
+
+// Install dependencies
+console.log('\n=== Installing Dependencies ===');
+try {
+  execSync('npm install', { stdio: 'inherit' });
+} catch (error) {
+  console.error('Dependency installation failed:', error);
+  process.exit(1);
 }
 
 // Run the build
@@ -71,7 +80,7 @@ function copyFolderRecursiveSync(source, target) {
   files.forEach(file => {
     const sourcePath = path.join(source, file);
     const targetPath = path.join(target, file);
-    
+
     // If it's a directory, recursively copy it
     if (fs.lstatSync(sourcePath).isDirectory()) {
       copyFolderRecursiveSync(sourcePath, targetPath);
