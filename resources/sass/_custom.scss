@@ -1,26 +1,138 @@
 // Custom styles for the application
 
+// Variables
+$primary-color: #4361ee;
+$secondary-color: #3a0ca3;
+$accent-color: #4cc9f0;
+$light-color: #f8f9fa;
+$dark-color: #212529;
+$success-color: #2ecc71;
+$warning-color: #f39c12;
+$danger-color: #e74c3c;
+$info-color: #3498db;
+$body-bg: #f8fafc;
+$card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$transition-default: all 0.3s ease;
+
+// Global styles
+body {
+    background-color: $body-bg;
+    font-family: 'Nunito', sans-serif;
+    color: $dark-color;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#app {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
 // Footer styles
 .footer {
-    background-color: #343a40;
+    background-color: $dark-color;
     color: white;
-    padding: 30px 0;
-    margin-top: 40px;
+    padding: 50px 0 20px;
+    margin-top: 60px;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 0;
+        right: 0;
+        height: 20px;
+        background: linear-gradient(135deg, $primary-color, $secondary-color);
+        border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    }
 
     .footer-heading {
         font-size: 1.2rem;
         font-weight: 600;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: $accent-color;
+            border-radius: 3px;
+        }
     }
 
     .footer-link {
         color: #adb5bd;
         text-decoration: none;
+        transition: $transition-default;
+        display: block;
+        padding: 0.3rem 0;
 
         &:hover {
-            color: #ffffff;
-            text-decoration: none;
+            color: white;
+            transform: translateX(5px);
         }
+    }
+
+    address p {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 10px;
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: $transition-default;
+
+            &:hover {
+                background-color: $accent-color;
+                color: white;
+                transform: translateY(-3px);
+            }
+        }
+    }
+
+    .footer-links {
+        .footer-link {
+            padding: 0.5rem 0;
+        }
+    }
+
+    .contact-info {
+        li {
+            color: #adb5bd;
+
+            i {
+                color: $accent-color;
+            }
+        }
+    }
+
+    .footer-divider {
+        margin: 2rem 0;
+        border-color: rgba(255, 255, 255, 0.1);
+        opacity: 1;
     }
 }
 
@@ -28,180 +140,692 @@
 @media (max-width: 767.98px) {
     // Adjust card padding on mobile
     .card-body {
-        padding: 1rem;
+        padding: 1.25rem;
     }
 
     // Make tables responsive
     .table-responsive {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        margin-bottom: 1.5rem;
+        box-shadow: none;
+        border-radius: 8px;
     }
 
     // Adjust buttons on mobile
     .btn {
-        padding: 0.375rem 0.5rem;
-        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        border-radius: 8px;
     }
 
     // Stack buttons on mobile
     .d-flex.gap-2 {
         flex-direction: column;
-        gap: 0.5rem !important;
+        gap: 0.75rem !important;
 
         .btn {
             width: 100%;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0;
         }
     }
 
     // Adjust doctor cards on mobile
-    .row-cols-md-3 > .col {
-        margin-bottom: 1rem;
+    .row-cols-md-3 > .col,
+    .row-cols-md-4 > .col {
+        margin-bottom: 1.5rem;
     }
 
     // Adjust form layout on mobile
     .col-form-label.text-md-end {
         text-align: left !important;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
     }
 
     .col-md-6.offset-md-4 {
         margin-left: 0;
     }
+
+    // Adjust navbar on mobile
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    // Adjust hero section on mobile
+    .hero-section {
+        padding: 60px 0;
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        p.lead {
+            font-size: 1.1rem;
+        }
+    }
+
+    // Adjust footer on mobile
+    .footer {
+        text-align: center;
+
+        .footer-heading::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .footer-link:hover {
+            transform: none;
+        }
+    }
 }
 
-// Custom styles for doctor cards
+// Custom styles for cards
 .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 12px;
+    box-shadow: $card-shadow;
+    transition: $transition-default;
+    overflow: hidden;
+    background-color: white;
+    margin-bottom: 1.5rem;
 
     &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 1.75rem;
+    }
+
+    .card-title {
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: $dark-color;
+    }
+
+    .card-text {
+        color: #6c757d;
+        line-height: 1.6;
+    }
+
+    .card-icon {
+        font-size: 3rem;
+        margin-bottom: 1.25rem;
+        display: inline-block;
+        color: $primary-color;
+        background: rgba($primary-color, 0.1);
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+        border-radius: 50%;
+        text-align: center;
     }
 }
 
 // Custom styles for appointment status badges
 .badge {
-    font-weight: 500;
-    padding: 0.35em 0.65em;
+    font-weight: 600;
+    padding: 0.5em 0.85em;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+
+    &.bg-success {
+        background-color: $success-color !important;
+    }
+
+    &.bg-warning {
+        background-color: $warning-color !important;
+        color: white;
+    }
+
+    &.bg-danger {
+        background-color: $danger-color !important;
+    }
+
+    &.bg-info {
+        background-color: $info-color !important;
+    }
+
+    &.bg-primary {
+        background-color: $primary-color !important;
+    }
 }
 
 // Custom styles for doctor profile
 .doctor-profile {
     .profile-image {
-        border: 5px solid #f8f9fa;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border: 5px solid white;
+        box-shadow: $card-shadow;
+        border-radius: 12px;
+        transition: $transition-default;
+
+        &:hover {
+            transform: scale(1.03);
+        }
     }
 
     .rating {
         font-size: 1.2rem;
+        color: $warning-color;
+    }
+
+    .doctor-info {
+        background-color: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: $card-shadow;
+        margin-bottom: 2rem;
+
+        h2 {
+            color: $primary-color;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .specialization {
+            color: $secondary-color;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
     }
 }
 
 // Custom styles for patient medical history
 .medical-history {
-    background-color: #f8f9fa;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    background-color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: $card-shadow;
+
+    h3 {
+        color: $primary-color;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 0.75rem;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: $accent-color;
+            border-radius: 3px;
+        }
+    }
 }
 
 // Custom styles for appointment booking form
 .booking-form {
-    background-color: #f8f9fa;
-    border-radius: 0.5rem;
-    padding: 2rem;
-    margin-bottom: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+    box-shadow: $card-shadow;
+
+    h3 {
+        color: $primary-color;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: $dark-color;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        border: 1px solid #e2e8f0;
+        transition: $transition-default;
+
+        &:focus {
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+        }
+    }
+
+    .btn-primary {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        padding: 0.75rem 2rem;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: $transition-default;
+
+        &:hover {
+            background-color: darken($primary-color, 10%);
+            border-color: darken($primary-color, 10%);
+            transform: translateY(-2px);
+        }
+    }
 }
 
 // Custom styles for dashboard cards
 .dashboard-card {
-    border-radius: 1rem;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: $card-shadow;
+    border: none;
+    transition: $transition-default;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
 
     .card-body {
-        padding: 1.5rem;
+        padding: 1.75rem;
     }
 
     .card-title {
         font-size: 1.1rem;
-        font-weight: 600;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: white;
     }
 
     .card-text {
-        font-size: 2rem;
-        font-weight: 700;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 0.5rem;
+    }
+
+    &.bg-primary {
+        background: linear-gradient(135deg, $primary-color, $secondary-color) !important;
+    }
+
+    &.bg-success {
+        background: linear-gradient(135deg, $success-color, #27ae60) !important;
+    }
+
+    &.bg-info {
+        background: linear-gradient(135deg, $info-color, #2980b9) !important;
+    }
+
+    &.bg-warning {
+        background: linear-gradient(135deg, $warning-color, #e67e22) !important;
     }
 }
 
 // Custom styles for search form
 .search-form {
-    background-color: #f8f9fa;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: $card-shadow;
+
+    h3 {
+        color: $primary-color;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        border: 1px solid #e2e8f0;
+
+        &:focus {
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+        }
+    }
+
+    .btn-primary {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        border-radius: 8px;
+
+        &:hover {
+            background-color: darken($primary-color, 10%);
+            border-color: darken($primary-color, 10%);
+        }
+    }
 }
 
 // Custom styles for pagination
 .pagination {
-    .page-item.active .page-link {
-        background-color: #0d6efd;
-        border-color: #0d6efd;
+    margin-top: 2rem;
+
+    .page-item {
+        margin: 0 3px;
+
+        &.active .page-link {
+            background-color: $primary-color;
+            border-color: $primary-color;
+            box-shadow: 0 4px 10px rgba($primary-color, 0.3);
+        }
+
+        &.disabled .page-link {
+            color: #adb5bd;
+        }
     }
 
     .page-link {
-        color: #0d6efd;
+        color: $primary-color;
+        border-radius: 8px;
+        padding: 0.5rem 0.75rem;
+        font-weight: 600;
+        border: none;
+        transition: $transition-default;
+
+        &:hover {
+            background-color: rgba($primary-color, 0.1);
+            color: $primary-color;
+            transform: translateY(-2px);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+        }
     }
 }
 
 // Custom styles for alerts
 .alert {
-    border-radius: 0.5rem;
+    border: none;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+    }
 
     &.alert-success {
-        background-color: #d1e7dd;
-        border-color: #badbcc;
-        color: #0f5132;
+        background-color: rgba($success-color, 0.1);
+        color: darken($success-color, 15%);
+
+        &::before {
+            background-color: $success-color;
+        }
     }
 
     &.alert-danger {
-        background-color: #f8d7da;
-        border-color: #f5c2c7;
-        color: #842029;
+        background-color: rgba($danger-color, 0.1);
+        color: darken($danger-color, 15%);
+
+        &::before {
+            background-color: $danger-color;
+        }
+    }
+
+    &.alert-warning {
+        background-color: rgba($warning-color, 0.1);
+        color: darken($warning-color, 15%);
+
+        &::before {
+            background-color: $warning-color;
+        }
+    }
+
+    &.alert-info {
+        background-color: rgba($info-color, 0.1);
+        color: darken($info-color, 15%);
+
+        &::before {
+            background-color: $info-color;
+        }
     }
 }
 
 // Custom styles for navbar
 .navbar {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, $primary-color, $secondary-color) !important;
+    padding: 1rem 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
     .navbar-brand {
-        font-weight: 700;
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: white !important;
+        letter-spacing: 0.5px;
     }
 
     .nav-link {
-        font-weight: 500;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.85) !important;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: $transition-default;
+
+        &:hover, &:focus {
+            color: white !important;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        &.active {
+            color: white !important;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+
+    .dropdown-menu {
+        border: none;
+        border-radius: 12px;
+        box-shadow: $card-shadow;
+        overflow: hidden;
+        padding: 0.5rem;
+
+        .dropdown-item {
+            padding: 0.75rem 1.25rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: $transition-default;
+
+            &:hover, &:focus {
+                background-color: rgba($primary-color, 0.1);
+                color: $primary-color;
+            }
+
+            &:active {
+                background-color: rgba($primary-color, 0.2);
+            }
+        }
+
+        .dropdown-divider {
+            margin: 0.5rem 0;
+        }
     }
 }
 
-// Custom styles for footer
-.footer {
-    background-color: #f8f9fa;
-    padding: 2rem 0;
-    margin-top: 3rem;
+// Custom styles for hero section
+.hero-section {
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    color: white;
+    padding: 100px 0;
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
 
-    .footer-heading {
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
+    &::before {
+        content: '';
+        position: absolute;
+        top: -10%;
+        right: -5%;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 1;
     }
 
-    .footer-link {
-        color: #6c757d;
-        text-decoration: none;
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -15%;
+        left: -5%;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        z-index: 1;
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    h1 {
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        font-size: 3.5rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        letter-spacing: -0.5px;
+    }
+
+    p {
+        font-size: 1.35rem;
+        margin-bottom: 2.5rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    .btn {
+        font-weight: 700;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        transition: $transition-default;
 
         &:hover {
-            color: #0d6efd;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        &.btn-light {
+            background-color: white;
+            color: $primary-color;
+            border: none;
+
+            &:hover {
+                background-color: white;
+                color: $secondary-color;
+            }
+        }
+
+        &.btn-outline-light {
+            border: 2px solid rgba(255, 255, 255, 0.7);
+
+            &:hover {
+                background-color: white;
+                color: $primary-color;
+                border-color: white;
+            }
+        }
+    }
+}
+
+// Custom styles for buttons
+.btn {
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: $transition-default;
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    &.btn-primary {
+        background-color: $primary-color;
+        border-color: $primary-color;
+
+        &:hover, &:focus {
+            background-color: darken($primary-color, 10%);
+            border-color: darken($primary-color, 10%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba($primary-color, 0.3);
+        }
+    }
+
+    &.btn-success {
+        background-color: $success-color;
+        border-color: $success-color;
+
+        &:hover, &:focus {
+            background-color: darken($success-color, 10%);
+            border-color: darken($success-color, 10%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba($success-color, 0.3);
+        }
+    }
+
+    &.btn-danger {
+        background-color: $danger-color;
+        border-color: $danger-color;
+
+        &:hover, &:focus {
+            background-color: darken($danger-color, 10%);
+            border-color: darken($danger-color, 10%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba($danger-color, 0.3);
+        }
+    }
+
+    &.btn-info {
+        background-color: $info-color;
+        border-color: $info-color;
+
+        &:hover, &:focus {
+            background-color: darken($info-color, 10%);
+            border-color: darken($info-color, 10%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba($info-color, 0.3);
+        }
+    }
+
+    &.btn-warning {
+        background-color: $warning-color;
+        border-color: $warning-color;
+        color: white;
+
+        &:hover, &:focus {
+            background-color: darken($warning-color, 10%);
+            border-color: darken($warning-color, 10%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba($warning-color, 0.3);
+        }
+    }
+
+    &.btn-outline-primary {
+        color: $primary-color;
+        border-color: $primary-color;
+
+        &:hover, &:focus {
+            background-color: $primary-color;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba($primary-color, 0.3);
         }
     }
 }
