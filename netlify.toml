@@ -5,7 +5,7 @@
 [build.environment]
   NODE_VERSION = "20"
   PHP_VERSION = "8.2"
-  PYTHON_VERSION = "3.9"
+  PYTHON_VERSION = "3.13"
 
 [[redirects]]
   from = "/*"

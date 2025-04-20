@@ -1,0 +1,8 @@
+build:
+  publish: public/build
+  command: node netlify-build.js
+  environment:
+    NODE_VERSION: 20
+    PHP_VERSION: 8.2
+    PYTHON_VERSION: 3.13
+    SKIP_PYTHON_CHECK: true
