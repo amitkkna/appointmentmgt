@@ -4,7 +4,8 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "netlify-build": "vite build"
+        "netlify-build": "vite build",
+        "postbuild": "node postbuild.js"
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
