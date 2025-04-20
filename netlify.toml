@@ -1,11 +1,11 @@
 [build]
   publish = "public/build"
-  command = "node netlify-build.js"
+  command = "node netlify.js"
 
 [build.environment]
   NODE_VERSION = "20"
   PHP_VERSION = "8.2"
-  PYTHON_VERSION = "3.13"
+  PYTHON_VERSION = "3.11"
 
 [[redirects]]
   from = "/*"

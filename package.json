@@ -3,7 +3,7 @@
     "type": "module",
     "engines": {
         "node": "20.x",
-        "python": "3.13.x"
+        "python": "3.11.x"
     },
     "scripts": {
         "build": "vite build",
