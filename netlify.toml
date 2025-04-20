@@ -1,6 +1,6 @@
 [build]
-  publish = "public/build"
-  command = "chmod +x netlify-build.sh && ./netlify-build.sh"
+  publish = "static-site"
+  command = "echo 'Static site deployment'"
 
 [build.environment]
   NODE_VERSION = "18"
